@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Climate Quest Pakistan - An educational game about climate change resilience for ages 9-15">
+  <title>Climate Quest Pakistan: Build a Resilient Nation</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <!-- ════════════════════════════════════════════════════════ -->
+  <!-- Particle Effects Container                              -->
+  <!-- ════════════════════════════════════════════════════════ -->
+  <div id="particles" class="particles"></div>
+
+  <!-- ════════════════════════════════════════════════════════ -->
+  <!-- SCREEN: Welcome                                         -->
+  <!-- ════════════════════════════════════════════════════════ -->
+  <div id="screen-welcome" class="screen active">
+    <div class="welcome-icon">&#x1F30D;</div>
+    <h1 class="game-title">Climate Quest Pakistan</h1>
+    <p class="game-subtitle">Build a Resilient Nation</p>
+    <p class="game-tagline">
+      Pakistan faces floods, heatwaves, glacial melt, drought, and smog.
+      Step into the role of a Climate Planner and make decisions that will shape the nation's future.
+    </p>
+    <button id="btn-start" class="btn btn-primary">Start Your Mission &#x2192;</button>
+  </div>
+
+  <!-- ════════════════════════════════════════════════════════ -->
+  <!-- SCREEN: Briefing / Setup                                -->
+  <!-- ════════════════════════════════════════════════════════ -->
+  <div id="screen-briefing" class="screen">
+    <div class="briefing-card">
+      <h2>&#x1F4CB; Mission Briefing</h2>
+      <p class="briefing-story">
+        You have been appointed as Pakistan's Chief Climate Planner.
+        Six critical climate zones need your leadership.
+        Manage your resources wisely — every decision has consequences.
+      </p>
+
+      <div class="form-group">
+        <label for="player-name">Your Name / Team Name</label>
+        <input type="text" id="player-name" placeholder="Enter your name..." maxlength="30" autocomplete="off">
+      </div>
+
+      <div class="form-group">
+        <label>Select Difficulty</label>
+        <div class="difficulty-selector">
+          <button class="diff-btn" data-diff="explorer">
+            <strong>&#x1F331; Explorer</strong>
+            <span>More resources, gentler outcomes</span>
+          </button>
+          <button class="diff-btn selected" data-diff="planner">
+            <strong>&#x1F3AF; Planner</strong>
+            <span>Balanced challenge</span>
+          </button>
+          <button class="diff-btn" data-diff="expert">
+            <strong>&#x1F525; Expert</strong>
+            <span>Scarce resources, harsh outcomes</span>
+          </button>
+        </div>
+      </div>
+
+      <button id="btn-begin" class="btn btn-success" style="width:100%; justify-content:center;">
+        Begin Mission &#x1F680;
+      </button>
+    </div>
+  </div>
+
+  <!-- ════════════════════════════════════════════════════════ -->
+  <!-- SCREEN: Dashboard / Zone Map                            -->
+  <!-- ════════════════════════════════════════════════════════ -->
+  <div id="screen-dashboard" class="screen">
+    <div class="dashboard-header container">
+      <div class="dashboard-info">
+        <h2>&#x1F5FA;&#xFE0F; Climate Planner: <span id="dashboard-name"></span></h2>
+        <p>Select a climate zone to begin your intervention &mdash; <strong><span id="zones-done">0</span> / 6</strong> zones completed</p>
+      </div>
+      <div class="resilience-badge">
+        <div>
+          <div class="res-label">Resilience Score</div>
+          <div class="res-value" id="dashboard-resilience">0</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="resources-panel container">
+      <h3>&#x1F4CA; National Resources</h3>
+      <div id="resources-dashboard"></div>
+    </div>
+
+    <h3 class="zone-section-title container">&#x26A0;&#xFE0F; Climate Zones &mdash; Choose Your Next Challenge</h3>
+    <div id="zone-grid" class="zone-grid container"></div>
+  </div>
+
+  <!-- ════════════════════════════════════════════════════════ -->
+  <!-- SCREEN: Scenario                                        -->
+  <!-- ════════════════════════════════════════════════════════ -->
+  <div id="screen-scenario" class="screen">
+    <div class="scenario-header">
+      <div class="scenario-zone-badge">
+        <span id="scenario-zone-icon"></span>
+        <span id="scenario-zone-name"></span>
+        <span>&mdash;</span>
+        <span id="scenario-zone-challenge"></span>
+      </div>
+      <h2 class="scenario-title" id="scenario-title"></h2>
+    </div>
+
+    <div class="scenario-card">
+      <p class="scenario-narrative" id="scenario-narrative"></p>
+    </div>
+
+    <div class="scenario-resources-panel">
+      <h4>&#x1F4CA; Current Resources</h4>
+      <div id="scenario-resources"></div>
+    </div>
+
+    <button id="btn-face-challenge" class="btn btn-warning">
+      Face the Challenge &#x26A1;
+    </button>
+  </div>
+
+  <!-- ════════════════════════════════════════════════════════ -->
+  <!-- SCREEN: Decision                                        -->
+  <!-- ════════════════════════════════════════════════════════ -->
+  <div id="screen-decision" class="screen">
+    <div class="decision-header container">
+      <h2 id="decision-title"></h2>
+      <p>Read each option carefully. Your resources and Pakistan's future depend on this decision.</p>
+    </div>
+
+    <div class="decision-resources-panel container">
+      <h4>&#x1F4CA; Current Resources</h4>
+      <div id="decision-resources"></div>
+    </div>
+
+    <div id="choice-cards" class="choice-cards container"></div>
+  </div>
+
+  <!-- ════════════════════════════════════════════════════════ -->
+  <!-- SCREEN: Outcome                                         -->
+  <!-- ════════════════════════════════════════════════════════ -->
+  <div id="screen-outcome" class="screen">
+    <div class="outcome-card">
+      <div id="outcome-quality" class="outcome-quality"></div>
+      <h3 id="outcome-choice-name" class="outcome-choice-name"></h3>
+      <p id="outcome-text" class="outcome-text"></p>
+
+      <div class="outcome-resilience-badge">
+        <span class="label">Resilience Gained:</span>
+        <span class="value" id="outcome-resilience"></span>
+      </div>
+
+      <div class="outcome-section">
+        <h4>&#x1F4D6; Climate Fact</h4>
+        <p id="outcome-fact"></p>
+      </div>
+
+      <div class="outcome-section">
+        <h4>&#x1F914; Reflect &amp; Discuss</h4>
+        <p id="outcome-reflection"></p>
+      </div>
+
+      <div class="outcome-total">
+        Total National Resilience: <span id="outcome-total-resilience">0</span>
+      </div>
+    </div>
+
+    <div class="outcome-resources-wrap">
+      <h4>&#x1F4CA; Updated Resources</h4>
+      <div id="outcome-resources"></div>
+    </div>
+
+    <div class="outcome-actions">
+      <button id="btn-continue" class="btn btn-primary">Continue &#x2192;</button>
+    </div>
+  </div>
+
+  <!-- ════════════════════════════════════════════════════════ -->
+  <!-- SCREEN: Random Event                                    -->
+  <!-- ════════════════════════════════════════════════════════ -->
+  <div id="screen-event" class="screen">
+    <div class="event-card">
+      <div id="event-icon" class="event-icon"></div>
+      <div id="event-type" class="event-type"></div>
+      <h2 id="event-title" class="event-title"></h2>
+      <p id="event-description" class="event-description"></p>
+      <div id="event-effects" class="event-effects"></div>
+      <button id="btn-event-continue" class="btn btn-primary">Continue &#x2192;</button>
+    </div>
+  </div>
+
+  <!-- ════════════════════════════════════════════════════════ -->
+  <!-- SCREEN: Final Score                                     -->
+  <!-- ════════════════════════════════════════════════════════ -->
+  <div id="screen-final" class="screen">
+    <div class="final-header container">
+      <h2>Mission Complete</h2>
+      <p style="color:var(--text-secondary);">
+        <span id="final-name"></span>'s National Climate Report
+      </p>
+    </div>
+
+    <div class="score-circle">
+      <div class="score-number" id="final-score">0</div>
+      <div class="score-label">/ 100</div>
+    </div>
+
+    <div class="final-grade-display">
+      <div class="final-grade-letter" id="final-grade"></div>
+      <div class="final-grade-title" id="final-title"></div>
+      <p class="final-grade-message" id="final-message"></p>
+    </div>
+
+    <div class="final-card container">
+      <h3>&#x1F4CA; Score Breakdown</h3>
+      <div class="final-breakdown">
+        <span class="label">Resilience Points</span>
+        <span class="value" id="final-resilience"></span>
+        <span class="label">Resource Bonus</span>
+        <span class="value" id="final-resource-bonus"></span>
+      </div>
+    </div>
+
+    <div class="final-card container">
+      <h3>&#x1F4B0; Final Resources</h3>
+      <div id="final-resources"></div>
+    </div>
+
+    <div class="final-card container">
+      <h3>&#x1F3C6; Achievements Unlocked</h3>
+      <div id="final-achievements"></div>
+    </div>
+
+    <div class="final-card container">
+      <h3>&#x1F5C2;&#xFE0F; Decision History</h3>
+      <div id="final-history"></div>
+    </div>
+
+    <div class="final-actions container">
+      <button id="btn-replay" class="btn btn-success">Play Again &#x1F504;</button>
+    </div>
+  </div>
+
+  <!-- ════════════════════════════════════════════════════════ -->
+  <!-- Scripts                                                  -->
+  <!-- ════════════════════════════════════════════════════════ -->
+  <script src="js/data.js"></script>
+  <script src="js/game.js"></script>
+
+</body>
+</html>
