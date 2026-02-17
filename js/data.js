@@ -497,5 +497,24 @@ const GAME_DATA = {
     { min: 55, grade: 'C',  title: 'Learning Leader',   message: 'A decent start, but there is room for improvement. Some communities are still at risk.' },
     { min: 40, grade: 'D',  title: 'Needs Improvement', message: 'Your choices left many communities vulnerable. Study the climate facts and try again!' },
     { min: 0,  grade: 'F',  title: 'Climate Crisis',    message: 'Pakistan is in trouble. Many bad decisions left communities devastated. Learn from the facts and try again!' }
+  ],
+
+  // ── Mini-Game Quiz Questions ─────────────────────────────────
+  quizQuestions: [
+    { q: 'Pakistan has more glaciers than any non-polar country on Earth.', a: true, fact: 'Pakistan has over 7,000 glaciers, making it home to the most glacial ice outside the polar regions.' },
+    { q: "Karachi's drainage system was designed for 20 million people.", a: false, fact: "It was designed for just 5 million — but the city now has over 20 million residents." },
+    { q: 'Mangrove forests can absorb 5 times more carbon than terrestrial forests.', a: true, fact: 'Mangroves are carbon capture superstars, storing up to 10 times more carbon per hectare than tropical forests.' },
+    { q: 'The 2022 Pakistan floods affected 33 million people.', a: true, fact: 'The devastating 2022 floods submerged one-third of the country, affecting 33 million people and causing $30 billion in damage.' },
+    { q: "Pakistan contributes over 5% of global greenhouse gas emissions.", a: false, fact: 'Pakistan contributes less than 1% of global emissions yet faces some of the worst climate impacts on Earth.' },
+    { q: 'Drip irrigation uses 30-70% less water than flood irrigation.', a: true, fact: 'Despite this, flood irrigation remains dominant in Pakistan. Switching to drip could transform water-scarce regions like Balochistan.' },
+    { q: 'Lahore gained 50% more tree cover in the last 20 years.', a: false, fact: "Lahore lost over 70% of its tree cover due to rapid urbanization, worsening the urban heat island effect." },
+    { q: 'A wet-bulb temperature of 35°C is fatal for humans.', a: true, fact: "At wet-bulb 35°C, the human body cannot cool itself through sweating. Jacobabad in Sindh regularly approaches this deadly threshold." },
+    { q: 'Karez water systems have existed for over 3,000 years.', a: true, fact: "Karez are ancient Persian gravity-fed underground channels. Balochistan once had 3,000 functioning Karez; fewer than 500 remain today." },
+    { q: 'Concrete seawalls are the most effective long-term protection against storm surges.', a: false, fact: 'Mangrove forests are more effective and cheaper in the long run. A hectare of mangroves provides protection equivalent to a $100,000 seawall.' },
+    { q: 'Pakistan lost 70% of its wetlands in the last 50 years.', a: true, fact: "Wetlands are nature's sponges. Their destruction dramatically worsened flood impacts across Pakistan." },
+    { q: "The Indus River provides water for about 90% of Pakistan's agriculture.", a: true, fact: "The Indus is Pakistan's lifeline. Its basin supports one of the largest irrigation networks in the world." },
+    { q: 'Heatwave deaths in Pakistan decreased between 2000 and 2020.', a: false, fact: "Heatwave deaths increased by 600% during that period as temperatures rose and urban areas expanded without climate adaptation." },
+    { q: 'Planting trees can reduce urban temperatures by 2-8°C.', a: true, fact: "Urban trees provide shade and release moisture through evapotranspiration, naturally cooling surrounding areas." },
+    { q: 'Pakistan spends more on climate prevention than emergency response.', a: false, fact: "Pakistan is trapped in a 'disaster cycle' — spending far more on emergency response than on prevention, which would cost less overall." }
   ]
 };
